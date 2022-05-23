@@ -17,3 +17,15 @@ class DeviceController:
         return make_response(jsonify({
             "devices": devices
         }))
+
+    @device_controller.route('/devices', methods=['POST'])
+    def create():
+        data = request.get_json()
+        device_schema = DeviceSchema()
+        data_dumped = device_schema.dump(data)
+        user = device_schema.load(data_dumped)
+
+        result = device_schema.dump(user.create())
+        return make_response(jsonify({
+            "device": result
+        }),201)
