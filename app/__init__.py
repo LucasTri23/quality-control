@@ -7,9 +7,11 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config.from_object('config')
+app.config['JSON_AS_ASCII'] = False
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 CORS(app)
+
 
 #import models
 from app.models import device
