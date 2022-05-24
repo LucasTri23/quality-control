@@ -21,8 +21,10 @@ db.create_all()
 from app.controllers.device_controller import DeviceController
 from app.controllers.user_controller import UserController
 from app.controllers.test_controller import TestController
+from app.controllers.result_controller import ResultController
 
 app.register_blueprint(DeviceController.device_controller, url_prefix="/api/v1")
 app.register_blueprint(UserController.user_controller, url_prefix="/api/v1")
 app.register_blueprint(TestController.test_controller, url_prefix="/api/v1")
+app.register_blueprint(ResultController.result_controller, url_prefix="/api/v1")
 
