@@ -1,9 +1,8 @@
 from flask import Blueprint, jsonify, make_response, request
 
-
-from app import db
 from app.models.user import User
 from app.models.user_schema import UserSchema
+
 
 class UserController:
     user_controller = Blueprint(name='user_controller', import_name=__name__)
@@ -16,7 +15,6 @@ class UserController:
         return make_response(jsonify({
             "users": users
         }))
-
 
     @user_controller.route('/users/<id>', methods=['GET'])
     def get_user(id):
@@ -37,4 +35,4 @@ class UserController:
         result = user_schema.dump(user.create())
         return make_response(jsonify({
             "user": result
-        }),201)
+        }), 201)

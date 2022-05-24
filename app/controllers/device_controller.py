@@ -1,9 +1,8 @@
 from flask import Blueprint, jsonify, make_response, request
 
-
-from app import db
 from app.models.device import Device
 from app.models.device_schema import DeviceSchema
+
 
 class DeviceController:
     device_controller = Blueprint(name='device_controller', import_name=__name__)
@@ -28,4 +27,4 @@ class DeviceController:
         result = device_schema.dump(user.create())
         return make_response(jsonify({
             "device": result
-        }),201)
+        }), 201)

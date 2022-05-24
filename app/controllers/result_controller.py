@@ -3,6 +3,7 @@ from flask import Blueprint, jsonify, make_response, request
 from app.models.result import Result
 from app.models.result_schema import ResultSchema
 
+
 class ResultController:
     result_controller = Blueprint(name='result_controller', import_name=__name__)
 
@@ -12,7 +13,7 @@ class ResultController:
         result_schema = ResultSchema(many=True)
         results = result_schema.dump(result_list)
         return make_response(jsonify({
-            "Results": results
+            "results": results
         }))
 
     @result_controller.route('/results', methods=['POST'])
@@ -25,4 +26,4 @@ class ResultController:
         response = result_schema.dump(result.create())
         return make_response(jsonify({
             "result": response
-        }),201)
+        }), 201)
