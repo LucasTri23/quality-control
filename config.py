@@ -2,7 +2,7 @@ from instance import config
 #Enable dev enviroment
 DEBUG = True
 
-SQLALCHEMY_DATABASE_URI = f'mysql+pymysql://{config.remote_user}:{config.remote_password}@{config.remote_host}/{config.remote_db}'
+SQLALCHEMY_DATABASE_URI = f'mysql+pymysql://{config.local_user}:{config.local_password}@{config.local_host}/{config.local_db}'
 
 DATABASE_CONNECT_OPTIONS = {}
 
