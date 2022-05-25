@@ -20,6 +20,6 @@ class ResultSchema(ma.SQLAlchemyAutoSchema):
     id_test = fields.Integer()
     id_employee = fields.Integer()
     id_device = fields.Integer()
-    test = fields.Nested(TestSchema)
     employee = fields.Nested(EmployeeSchema)
     device = fields.Nested(DeviceSchema)
+    tests = fields.Nested(TestSchema, many=True)
