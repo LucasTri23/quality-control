@@ -12,7 +12,7 @@ class Employee(db.Model):
 
 
 #align with the teacher the business rules
-    def __init__(self, emp_name: str = "", registry: str = "") -> None:
+    def __init__(self, emp_name, registry) -> None:
         self.emp_name = emp_name
         self.registry = registry
 

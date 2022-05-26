@@ -13,7 +13,7 @@ class Device(db.Model):
     model = Column(String(128), nullable=True)
 
 #align with the teacher the business rules
-    def __init__(self, device_name: str = "", serie_number: str = "", brand: str = "", model: str = "") -> None:
+    def __init__(self, device_name, serie_number, brand, model) -> None:
         self.device_name = device_name
         self.serie_number = serie_number
         self.brand = brand

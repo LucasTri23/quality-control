@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, make_response, request
+from marshmallow import EXCLUDE
 
 from app import db
 from app.models.result import Result
@@ -29,9 +30,8 @@ class ResultController:
     @result_controller.route('/results', methods=['POST'])
     def create():
         data = request.get_json()
-        result_schema = ResultSchema()
-        data_dumped = result_schema.dump(data)
-        result = result_schema.load(data_dumped)
+        result_schema = ResultSchema(unknown=EXCLUDE)
+        result = result_schema.load(data)
 
         response = result_schema.dump(result.create())
         return make_response(jsonify({

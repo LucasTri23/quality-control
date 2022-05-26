@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, make_response, request
+from marshmallow import EXCLUDE
 
 from app.models.device import Device
 from app.models.device_schema import DeviceSchema
@@ -20,11 +21,9 @@ class DeviceController:
     @device_controller.route('/devices', methods=['POST'])
     def create():
         data = request.get_json()
-        device_schema = DeviceSchema()
-        data_dumped = device_schema.dump(data)
-        user = device_schema.load(data_dumped)
-
-        result = device_schema.dump(user.create())
+        device_schema = DeviceSchema(unknown=EXCLUDE)
+        device = device_schema.load(data)
+        result = device_schema.dump(device.create())
         return make_response(jsonify({
             "device": result
         }), 201)

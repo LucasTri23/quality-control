@@ -9,7 +9,7 @@ class TestType(db.Model):
     type_desc = Column(String(128), nullable=True)
 
     # align with the teacher the business rules
-    def __int__(self, id_test_type: int = None, type_desc: str = "") -> None:
+    def __int__(self, id_test_type, type_desc) -> None:
         self.id_test_type = id_test_type
         self.type_desc = type_desc
 

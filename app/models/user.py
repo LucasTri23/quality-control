@@ -1,5 +1,6 @@
 from sqlalchemy import Column, BigInteger, String, ForeignKey
 from sqlalchemy.orm import relationship
+from werkzeug.security import generate_password_hash, check_password_hash
 
 from app import db, app
 
@@ -14,20 +15,13 @@ class User(db.Model):
 
     # align with the teacher the business rules
 
-    def __init__(self, login: str = "", password: str = "") -> None:
-        self.login = login
-        self.password = password
-
-    def __init__(self, login: str = "", password: str = "",
-                 id_employee: int = None) -> None:
-        self.login = login
-        self.password = password
-        self.id_employee = id_employee
-
     def __init__(self, login, password, employee) -> None:
         self.login = login
-        self.password = password
+        self.password = generate_password_hash(password)
         self.employee = employee
+
+    def verify_password(self, password):
+        return check_password_hash(self.password, password)
 
     def create(self):
         db.session.add(self)

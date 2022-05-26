@@ -8,8 +8,6 @@ class TestResult(db.Model):
     __tablename__ = 'Test_result',
     id_test = Column(BigInteger, ForeignKey('Test.id_test'), nullable=False, primary_key=True)
     id_result = Column(BigInteger, ForeignKey('Result.id_result'), nullable=False, primary_key=True)
-    # result = relationship("Result", backref="Result", lazy=True)
-    # test = relationship("Test", backref="Test", lazy=True)
 
     # align with the teacher the business rules
     def __init__(self, id_teste, id_result) -> None:

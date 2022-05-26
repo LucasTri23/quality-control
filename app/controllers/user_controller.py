@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, make_response, request
+from marshmallow import EXCLUDE
 
 from app.models.user import User
 from app.models.user_schema import UserSchema
@@ -10,7 +11,7 @@ class UserController:
     @user_controller.route('/users', methods=['GET'])
     def index():
         user_list = User.query.all()
-        user_schema = UserSchema(many=True)
+        user_schema = UserSchema(unknown=EXCLUDE, many=True, exclude=['password'])
         users = user_schema.dump(user_list)
         return make_response(jsonify({
             "users": users
@@ -26,11 +27,10 @@ class UserController:
         }))
 
     @user_controller.route('/users', methods=['POST'])
-    def create():
+    def register():
         data = request.get_json()
-        user_schema = UserSchema()
-        data_dumped = user_schema.dump(data)
-        user = user_schema.load(data_dumped)
+        user_schema = UserSchema(unknown=EXCLUDE)
+        user = user_schema.load(data)
 
         result = user_schema.dump(user.create())
         return make_response(jsonify({
