@@ -34,9 +34,9 @@ class DeviceController:
         device = Device.query.get(id)
         db.session.delete(device)
         db.session.commit()
-        return make_response({
+        return make_response(jsonify({
 
-        }, 204)
+        }), 204)
 
     @device_controller.route('/devices/<id>', methods=['PUT'])
     def update(id):
