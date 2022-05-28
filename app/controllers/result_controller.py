@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, make_response, request
 from marshmallow import EXCLUDE
 
 from app import db
+from app.auth.authenticate import token_required
 from app.models.result import Result
 from app.models.result_schema import ResultSchema
 
@@ -27,8 +28,10 @@ class ResultController:
             "result": result_serialized
         }))
 
+
     @result_controller.route('/results', methods=['POST'])
-    def create():
+    @token_required
+    def create(current_user):
         data = request.get_json()
         result_schema = ResultSchema(unknown=EXCLUDE)
         result = result_schema.load(data)

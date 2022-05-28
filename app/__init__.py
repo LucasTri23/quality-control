@@ -8,9 +8,11 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 app.config.from_object('config')
 app.config['JSON_AS_ASCII'] = False
+app.config['SECRET_KEY'] = 'secret'
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 CORS(app)
+
 
 #import models
 from app.models import device
@@ -28,4 +30,3 @@ app.register_blueprint(DeviceController.device_controller, url_prefix="/api/v1")
 app.register_blueprint(UserController.user_controller, url_prefix="/api/v1")
 app.register_blueprint(TestController.test_controller, url_prefix="/api/v1")
 app.register_blueprint(ResultController.result_controller, url_prefix="/api/v1")
-

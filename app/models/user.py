@@ -8,7 +8,7 @@ from app import db, app
 class User(db.Model):
     __tablename__ = 'User'
     id_user = Column(BigInteger, primary_key=True)
-    login = Column(String(128), nullable=True)
+    login = Column(String(128), nullable=True, unique=True)
     password = Column(String(128), nullable=True)
     id_employee = Column(BigInteger, ForeignKey('Employee.id_employee'), nullable=True)
     employee = relationship("Employee", uselist=False, backref="User", lazy=True)
@@ -19,6 +19,11 @@ class User(db.Model):
         self.login = login
         self.password = generate_password_hash(password)
         self.employee = employee
+
+    def __init__(self, login, password) -> None:
+        self.login = login
+        self.password = generate_password_hash(password)
+
 
     def verify_password(self, password):
         return check_password_hash(self.password, password)
