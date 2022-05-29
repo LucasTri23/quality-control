@@ -13,7 +13,7 @@ class TestSchema(ma.SQLAlchemyAutoSchema):
 
     id_test = fields.Integer()
     test_name = fields.Str()
-    max_value = fields.Decimal()
-    min_value = fields.Decimal()
+    max_value = fields.Decimal(allow_none=True)
+    min_value = fields.Decimal(allow_none=True)
     id_test_type = fields.Integer()
     test_type = fields.Nested(TestTypeSchema)

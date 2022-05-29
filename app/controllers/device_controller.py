@@ -17,7 +17,7 @@ class DeviceController:
         device_schema = DeviceSchema(many=True)
         devices = device_schema.dump(device_list)
 
-        return make_response(jsonify({
+        return (jsonify({
             "devices": devices
         }), 200)
 
@@ -51,6 +51,7 @@ class DeviceController:
 
             }), 204)
         except exc.IntegrityError:
+            db.session.rollback()
             response = jsonify({
                 'message': 'Database Error'
             })

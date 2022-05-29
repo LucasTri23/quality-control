@@ -16,7 +16,7 @@ class Result(db.Model):
     id_result = Column(BigInteger, primary_key=True)
     date_hour = Column(DateTime, server_default=current_timestamp())
     measured_value = Column(Numeric(10, 2), nullable=False)
-    result = Column(String(128), nullable=False)
+    result_desc = Column(String(128), nullable=False)
     id_employee = Column(BigInteger, ForeignKey('Employee.id_employee'), nullable=False)
     employee = relationship("Employee", uselist=False, backref="Result", lazy=True)
     id_device = Column(BigInteger, ForeignKey('Device.id_device'), nullable=False)
@@ -25,9 +25,9 @@ class Result(db.Model):
 
 
     # align with the teacher the business rules
-    def __init__(self, measured_value, result, id_employee, id_device, tests) -> None:
+    def __init__(self, measured_value, result_desc, id_employee, id_device, tests) -> None:
         self.measured_value = measured_value
-        self.result = result
+        self.result_desc = result_desc
         self.id_employee = id_employee
         self.id_device = id_device
         self.tests = tests

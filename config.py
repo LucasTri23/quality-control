@@ -15,7 +15,7 @@ class DevelopmentConfig(BaseConfig):
     JWT_ALGORITHM = 'HS512'
     JWT_BLACKLIST_ENABLED = True
     JWT_BLACKLIST_TOKEN_CHECKS = ['access', 'refresh']
-    JWT_TOKEN_LOCATION = ['headers']
+    JWT_TOKEN_LOCATION = ['headers','cookies']
     JWT_COOKIE_CSRF_PROTECT = False
     JWT_COOKIE_SECURE = True
 
