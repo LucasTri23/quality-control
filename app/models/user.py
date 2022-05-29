@@ -10,19 +10,22 @@ class User(db.Model):
     id_user = Column(BigInteger, primary_key=True)
     login = Column(String(128), nullable=True, unique=True)
     password = Column(String(128), nullable=True)
+    user_role = Column(BigInteger, nullable=False)
     id_employee = Column(BigInteger, ForeignKey('Employee.id_employee'), nullable=True)
     employee = relationship("Employee", uselist=False, backref="User", lazy=True)
 
     # align with the teacher the business rules
 
-    def __init__(self, login, password, employee) -> None:
+    def __init__(self, login, password, user_role, employee) -> None:
         self.login = login
         self.password = generate_password_hash(password)
+        self.user_role = user_role
         self.employee = employee
 
-    def __init__(self, login, password) -> None:
-        self.login = login
-        self.password = generate_password_hash(password)
+    # def __init__(self, login, password, user_role) -> None:
+    #     self.login = login
+    #     self.user_role = user_role
+    #     self.password = generate_password_hash(password)
 
 
     def verify_password(self, password):

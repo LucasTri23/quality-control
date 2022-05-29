@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, make_response, request
+from flask_jwt_extended import jwt_required
 from marshmallow import EXCLUDE
 
 from app.models.device import Device
@@ -8,7 +9,9 @@ from app.models.device_schema import DeviceSchema
 class DeviceController:
     device_controller = Blueprint(name='device_controller', import_name=__name__)
 
+
     @device_controller.route('/devices', methods=['GET'])
+    @jwt_required()
     def index():
         device_list = Device.query.all()
         device_schema = DeviceSchema(many=True)
@@ -19,6 +22,7 @@ class DeviceController:
         }))
 
     @device_controller.route('/devices', methods=['POST'])
+    @jwt_required()
     def create():
         data = request.get_json()
         device_schema = DeviceSchema(unknown=EXCLUDE)
