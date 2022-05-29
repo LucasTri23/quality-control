@@ -11,7 +11,6 @@ from app import db
 class TestController:
     test_controller = Blueprint(name='test_controller', import_name=__name__)
 
-
     @test_controller.route('/tests', methods=['GET'])
     @jwt_required()
     def index():
@@ -22,20 +21,18 @@ class TestController:
             "tests": tests
         }))
 
-
     @test_controller.route('/tests/<id>', methods=['GET'])
     @jwt_required()
     def get_test(id):
-        test_list = Test.query.get(id)
-        test_schema = TestSchema(many=True)
-        tests = test_schema.dump(test_list)
+        test = Test.query.filter_by(id_test=id).first_or_404()
+        test_schema = TestSchema()
+        response = test_schema.dump(test)
         return (jsonify({
-            "tests": tests
+            "test": response
         }), 201)
 
-
-    @jwt_required()
     @test_controller.route('/tests', methods=['POST'])
+    @jwt_required()
     def create():
         try:
             data = request.get_json()
@@ -53,7 +50,6 @@ class TestController:
                 'message': 'Database Error'
             })
             return response, 409
-
 
     @test_controller.route('/tests/<id>', methods=['PUT'])
     @jwt_required()
@@ -89,12 +85,11 @@ class TestController:
             })
             return response, 409
 
-
     @test_controller.route('/tests/<id>', methods=['DELETE'])
     @jwt_required()
     def delete(id):
         try:
-            test = Test.query.get(id)
+            test = Test.query.filter_by(id_test=id).first_or_404()
             db.session.delete(test)
             db.session.commit()
             return (jsonify({
@@ -106,4 +101,3 @@ class TestController:
                 'message': 'Database Error'
             })
             return response, 409
-

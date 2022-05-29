@@ -1,11 +1,7 @@
-import datetime
-
-import jwt
 from flask import Blueprint, jsonify, make_response, request
 from flask_jwt_extended import jwt_required
 from marshmallow import EXCLUDE
 
-from app import app
 from app.models.user import User
 from app.models.user_schema import UserSchema
 
@@ -26,7 +22,7 @@ class UserController:
     @user_controller.route('/users/<id>', methods=['GET'])
     @jwt_required()
     def get_user(id):
-        user = User.query.get(id)
+        user = User.query.filter_by(id_user=id).first_or_404()
         user_schema = UserSchema()
         user_dumped = user_schema.dump(user)
         return make_response(jsonify({

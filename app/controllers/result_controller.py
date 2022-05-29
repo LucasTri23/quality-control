@@ -51,13 +51,11 @@ class ResultController:
     @result_controller.route('/results/<id>', methods=['DELETE'])
     @jwt_required()
     def delete(id):
-
         try:
-            product = Result.query.get(id)
-            db.session.delete(product)
+            result = Result.query.filter_by(id_result=id).first_or_404()
+            db.session.delete(result)
             db.session.commit()
-            return make_response(jsonify({
-
+            return (jsonify({
             }), 204)
         except exc.IntegrityError:
             db.session.rollback()

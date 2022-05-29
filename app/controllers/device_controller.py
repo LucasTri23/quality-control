@@ -55,7 +55,7 @@ class DeviceController:
     @jwt_required()
     def delete(id):
         try:
-            device = Device.query.get(id)
+            device = Device.query.filter_by(id_device=id).first_or_404()
             db.session.delete(device)
             db.session.commit()
             return (jsonify({
@@ -72,7 +72,7 @@ class DeviceController:
     @jwt_required()
     def update(id):
         try:
-            device = Device.query.get(id)
+            device = Device.query.filter_by(id_device=id).first_or_404()
             device_schema = DeviceSchema()
             data = request.get_json()
 
