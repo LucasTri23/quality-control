@@ -7,7 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
-app.config.from_object('config.DevelopmentConfig')
+app.config.from_object('config.ProductionConfig')
 app.config['JSON_AS_ASCII'] = False
 app.config['SECRET_KEY'] = 'secret'
 db = SQLAlchemy(app)
