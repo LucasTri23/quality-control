@@ -21,6 +21,17 @@ class DeviceController:
             "devices": devices
         }), 200)
 
+    @device_controller.route('/devices/<id>', methods=['GET'])
+    @jwt_required()
+    def get_result(id):
+        device = Device.query.filter_by(id_device=id).first_or_404()
+        device_schema = DeviceSchema()
+        response = device_schema.dump(device)
+
+        return (jsonify({
+            "device": response
+        }), 200)
+
     @device_controller.route('/devices', methods=['POST'])
     @jwt_required()
     def create():
@@ -88,4 +99,3 @@ class DeviceController:
                 'message': 'Database Error'
             })
             return response, 409
-
