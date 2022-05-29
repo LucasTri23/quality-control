@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, make_response, request
 from flask_jwt_extended import jwt_required
 from marshmallow import EXCLUDE
-
+from sqlalchemy import exc
 from app.models.device import Device
 from app.models.device_schema import DeviceSchema
 from app import db
@@ -9,7 +9,6 @@ from app import db
 
 class DeviceController:
     device_controller = Blueprint(name='device_controller', import_name=__name__)
-
 
     @device_controller.route('/devices', methods=['GET'])
     @jwt_required()
@@ -20,48 +19,72 @@ class DeviceController:
 
         return make_response(jsonify({
             "devices": devices
-        }))
+        }), 200)
 
     @device_controller.route('/devices', methods=['POST'])
     @jwt_required()
     def create():
-        data = request.get_json()
-        device_schema = DeviceSchema(unknown=EXCLUDE)
-        device = device_schema.load(data)
-        result = device_schema.dump(device.create())
-        return make_response(jsonify({
-            "device": result
-        }), 201)
+        try:
+            data = request.get_json()
+            device_schema = DeviceSchema(unknown=EXCLUDE)
+            device = device_schema.load(data)
+            result = device_schema.dump(device.create())
+            return make_response(jsonify({
+                "device": result
+            }), 201)
+        except exc.IntegrityError:
+            db.session.rollback()
+            response = jsonify({
+                'message': 'Database Error'
+            })
+
+            return response, 409
 
     @device_controller.route('/devices/<id>', methods=['DELETE'])
+    @jwt_required()
     def delete(id):
-        device = Device.query.get(id)
-        db.session.delete(device)
-        db.session.commit()
-        return make_response(jsonify({
+        try:
+            device = Device.query.get(id)
+            db.session.delete(device)
+            db.session.commit()
+            return (jsonify({
 
-        }), 204)
+            }), 204)
+        except exc.IntegrityError:
+            response = jsonify({
+                'message': 'Database Error'
+            })
+            return response, 409
 
     @device_controller.route('/devices/<id>', methods=['PUT'])
+    @jwt_required()
     def update(id):
-        device = Device.query.get(id)
-        device_schema = DeviceSchema()
-        data = request.get_json()
+        try:
+            device = Device.query.get(id)
+            device_schema = DeviceSchema()
+            data = request.get_json()
 
-        if (data.get('device_name')):
-            device.device_name = data['device_name']
-        if (data.get('serie_number')):
-            device.serie_number = data['serie_number']
-        if (data.get('brand')):
-            device.brand = data['brand']
-        if (data.get('model')):
-            device.model = data['model']
+            if data.get('device_name'):
+                device.device_name = data['device_name']
+            if data.get('serie_number'):
+                device.serie_number = data['serie_number']
+            if data.get('brand'):
+                device.brand = data['brand']
+            if data.get('model'):
+                device.model = data['model']
 
-        db.session.add(device)
-        db.session.commit()
+            db.session.add(device)
+            db.session.commit()
 
-        update_device = device_schema.dump(device)
-        return make_response(jsonify({
-            "device": update_device
-        }), 200)
+            update_device = device_schema.dump(device)
+            return (jsonify({
+                "device": update_device
+            }), 200)
+
+        except exc.IntegrityError:
+            db.session.rollback()
+            response = jsonify({
+                'message': 'Database Error'
+            })
+            return response, 409
 

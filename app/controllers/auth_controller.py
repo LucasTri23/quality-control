@@ -1,12 +1,6 @@
-import json
-import token
-
-from flask import request, jsonify, Blueprint, make_response
-from marshmallow import EXCLUDE
-
+from flask import request, jsonify, Blueprint
 from app import db, jwt
 from sqlalchemy import exc
-from datetime import datetime
 from app.models.user import User
 from app.models.user_schema import UserSchema
 from app.models.revoked_token import RevokedToken
@@ -18,16 +12,6 @@ user_schema = UserSchema(exclude=('employee', 'id_employee'))  # Importing User 
 
 class AuthController:
     auth_controller = Blueprint(name='auth_controller', import_name=__name__)
-
-    # Loading JWT user claims
-    @jwt.additional_claims_loader
-    def add_claims(user):
-        print(user)
-        resp = {
-            'role': user['user_role'],
-            'id': user['id_user']
-        }
-        return resp
 
     # Loadind the jwt identity value
     @jwt.user_identity_loader
@@ -43,20 +27,17 @@ class AuthController:
 
     @auth_controller.route("/register", methods=['POST'])
     def register():
-        #login = request.json['login']
-        #implement logic to check if login already exists on database
-        #user = User.query.filter_by(login=login).first()
+        # implement logic to check if login already exists on database
+        # user = User.query.filter_by(login=login).first()
 
         data = request.get_json()
         user_schema = UserSchema()
         user = user_schema.load(data)
 
         result = user_schema.dump(user.create())
-        return make_response(jsonify({
+        return (jsonify({
             "user": result
         }), 201)
-
-
 
     @auth_controller.route('/login', methods=['POST'])
     def login():
@@ -66,33 +47,31 @@ class AuthController:
             # Creating access tokens
             access_token = create_access_token(user)
             refresh_token = create_refresh_token(user)
-            resp = jsonify({
+            response = jsonify({
                 "access_token": access_token,
                 "refresh_token": refresh_token,
             })
             # Adding tokens to response
-            set_access_cookies(resp, access_token)
-            set_refresh_cookies(resp, refresh_token)
+            set_access_cookies(response, access_token)
+            set_refresh_cookies(response, refresh_token)
 
-            return resp, 200
+            return response, 200
         else:
-            resp = jsonify({
+            response = jsonify({
                 "message": "Wrong Email or Password"
             })
-            return resp, 401
-
+            return response, 401
 
     @auth_controller.route('/refresh', methods=['POST'])
     @jwt_required(refresh=True)
     def refresh():
         current_user = get_jwt_identity()
         access_token = create_access_token(current_user)
-        resp = jsonify({
+        response = jsonify({
             'access_token': access_token
         })
-        set_access_cookies(resp, access_token)
-        return resp, 200
-
+        set_access_cookies(response, access_token)
+        return response, 200
 
     @auth_controller.route('/logout', methods=['DELETE'])
     @jwt_required()
@@ -102,20 +81,20 @@ class AuthController:
             rt = RevokedToken(jti=jti)
             db.session.add(rt)
             db.session.commit()
-            resp = jsonify({
+            response = jsonify({
                 'message': "Succesfully logged out"
             })
-            unset_jwt_cookies(resp)
+            unset_jwt_cookies(response)
 
-            return resp, 200
+            return response, 200
         except exc.IntegrityError:
-            resp = jsonify({
+            response = jsonify({
                 'message': 'Database Error'
             })
 
-            return resp, 409
+            return response, 409
 
-    #only accepts refresh tokens
+    # only accepts refresh tokens
     @auth_controller.route('/logout2', methods=['DELETE'])
     @jwt_required(refresh=True)
     def logout2():
@@ -124,16 +103,16 @@ class AuthController:
             rt = RevokedToken(jti=jti)
             db.session.add(rt)
             db.session.commit()
-            resp = jsonify({
+            response = jsonify({
                 'message': "succesfully logged out"
             })
-            unset_jwt_cookies(resp)
+            unset_jwt_cookies(response)
 
-            return resp, 200
+            return response, 200
 
         except exc.IntegrityError:
-            resp = jsonify({
+            response = jsonify({
                 'message': 'Database Error'
             })
 
-            return resp, 409
+            return response, 409
