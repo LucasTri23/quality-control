@@ -52,8 +52,8 @@ class AuthController:
                 "refresh_token": refresh_token,
             })
             # Adding tokens to response
-            set_access_cookies(response, access_token)
-            set_refresh_cookies(response, refresh_token)
+            #set_access_cookies(response, access_token)
+            #set_refresh_cookies(response, refresh_token)
 
             return response, 200
         else:
@@ -84,7 +84,7 @@ class AuthController:
             response = jsonify({
                 'message': "Succesfully logged out"
             })
-            unset_jwt_cookies(response)
+            #unset_jwt_cookies(response)
 
             return response, 200
         except exc.IntegrityError:
@@ -106,7 +106,7 @@ class AuthController:
             response = jsonify({
                 'message': "succesfully logged out"
             })
-            unset_jwt_cookies(response)
+            #unset_jwt_cookies(response)
 
             return response, 200
 
