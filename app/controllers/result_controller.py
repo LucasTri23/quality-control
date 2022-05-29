@@ -23,13 +23,12 @@ class ResultController:
     @result_controller.route('/results/<id>', methods=['GET'])
     @jwt_required()
     def get_result(id):
-        result = Result.query.get(id)
+        result = Result.query.filter_by(id_result=id).first_or_404()
         result_schema = ResultSchema()
-        result_serialized = result_schema.dump(result)
+        response = result_schema.dump(result)
         return (jsonify({
-            "result": result_serialized
+            "result": response
         }), 200)
-
 
     @result_controller.route('/results', methods=['POST'])
     @jwt_required()
@@ -49,7 +48,6 @@ class ResultController:
             })
             return response, 409
 
-
     @result_controller.route('/results/<id>', methods=['DELETE'])
     @jwt_required()
     def delete(id):
@@ -67,4 +65,3 @@ class ResultController:
                 'message': 'Database Error'
             })
             return response, 409
-
