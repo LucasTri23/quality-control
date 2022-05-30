@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Free bootstrap documentation template">
+    <title>Device</title>
+    <!-- using online links -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.min.css">
+    <!-- using local links -->
+    <link rel="stylesheet" href="css/main.min.css">
+    <link rel="stylesheet" href="css/sidebar-themes.min.css">
+    <link rel="stylesheet" href="css/bootstrap-treeview.min.css">
+    <link rel="stylesheet" href="css/postman.min.css">
+
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png" /> </head>
+
+<body>
+    <div class="page-wrapper toggled light-theme">
+        <div class="modal dark-background" id="snippetModal" tabindex="-1" role="dialog" aria-labelledby="documentation-response-modal" style="display: none;">
+            <div class="modal-dialog" role="document">
+                <div class="modal-header">
+                    <div class="title">Example Response</div>
+                    <button type="button" class="close btn-circle" data-dismiss="modal" aria-label="Close">
+              <div>
+              <span id="closeModal" aria-hidden="true">×</span>
+              </div>
+            </button>
+                </div>
+                <div class="modal-content">
+                    <div class="modal-body" style="width: 540.5px;">
+                        <pre class="  language-javascript">
+                  <code class=" language-javascript"></code>
+              </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav id="sidebar" class="sidebar-wrapper">
+            <div class="sidebar-content">
+                <!-- sidebar-brand  -->
+                <div class="sidebar-item sidebar-brand text-white font-weight-bold">API Documentation</div>
+                <!-- sidebar-header  -->
+                <!-- sidebar-menu  -->
+                <div class=" sidebar-item sidebar-menu">
+                    <div id="tree"></div>
+                </div>
+                <!-- sidebar-menu  -->
+            </div>
+        </nav>
+        <!-- page-content  -->
+        <main class="page-content">
+            <div id="overlay" class="overlay"></div>
+            <div class="container-fluid">
+                <div class="row d-flex align-items-center p-3 border-bottom">
+                    <div class="col-md-1">
+                        <a id="toggle-sidebar" class="btn rounded-0 p-3" href="#"> <i class="fas fa-bars"></i> </a>
+                    </div>
+                    <div class="col-md-9"></div>
+                    <div class="col-md-2 text-left">
+                    </div>
+                </div>
+                <div class="row p-lg-4">
+                    <article class="main-content col-md-12 pr-lg-9" id="doc-body">
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12">
+                                <div class="api-information">
+                                    <div class="collection-name">
+                                        <p>Device</p>
+                                    </div>
+                                    <div class="collection-description">
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="1">
+                                    <div class="heading">
+                                        <div class="name">
+                                            <span class="GET method">GET</span> Get Devices <span class="lock-icon"></span>
+                                        </div>
+                                    </div>
+                                    <div class="url">https://qualitycontrol.herokuapp.com/api/v1/devices</div>
+
+                                    <div class="request-body">
+                                        <div class="body-heading">HEADERS</div>
+                                        <hr>
+                                        <div class="param row">
+                                            <div class="name col-md-3 col-xs-12">Authorization</div>
+                                            <div class="value col-md-9 col-xs-12">Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY1Mzg2MjQxNSwianRpIjoiYzg4NDU0NWEtMzQwMi00NzRkLWJiMmMtNTI0OTE5OWU2Y2FmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJ1c2VyX3JvbGUiOjEsImlkX3VzZXIiOjMsImxvZ2luIjoidXNlciJ9LCJuYmYiOjE2NTM4NjI0MTUsImV4cCI6MTY1Mzg2Mjc3NX0.YA6KzJ8cspp85IT7XoE9P24AtGG1sUSDfLsdTKQ83fy0IAf_XIUN98k9GGoh9n1_UFFzyRaHiSRuDXpGhu9i0Q</div>
+                                            <div class="description col-md-9 col-xs-12">
+                                                <p>None</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">Get Devices</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="1" data-response-info="response_1">Get Devices</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="1" data-id="response_1">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper " data-title="Get Devices">
+                                                <code class="is-highlighted">
+GET https://qualitycontrol.herokuapp.com/api/v1/devices</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="2">
+                                    <div class="heading">
+                                        <div class="name">
+                                            <span class="GET method">GET</span> Get Devices By Id <span class="lock-icon"></span>
+                                        </div>
+                                    </div>
+                                    <div class="url">https://qualitycontrol.herokuapp.com/api/v1/devices/1</div>
+
+                                    <div class="request-body">
+                                        <div class="body-heading">HEADERS</div>
+                                        <hr>
+                                        <div class="param row">
+                                            <div class="name col-md-3 col-xs-12">Authorization</div>
+                                            <div class="value col-md-9 col-xs-12">Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY1Mzg2NDM5OCwianRpIjoiZDc3ZGNiNjctZWJmMi00NjMyLTllZWItYTQ1MzY5NGNhZWY2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJ1c2VyX3JvbGUiOjEsImlkX3VzZXIiOjMsImxvZ2luIjoidXNlciJ9LCJuYmYiOjE2NTM4NjQzOTgsImV4cCI6MTY1Mzg2NDc1OH0.HCbtQB4LJIriPkaWpYxgRKJ68F2EwPLrJT21A5ytR3sHUAbejZ5BvJ4lUtvbeeUCA7GdLJrgUAIWnOifSxfLhw</div>
+                                            <div class="description col-md-9 col-xs-12">
+                                                <p>None</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">Get Devices By Id</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="2" data-response-info="response_2">Get Devices By Id</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="2" data-id="response_2">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper " data-title="Get Devices By Id">
+                                                <code class="is-highlighted">
+GET https://qualitycontrol.herokuapp.com/api/v1/devices/1</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="3">
+                                    <div class="heading">
+                                        <div class="name">
+                                            <span class="POST method">POST</span> Create Device <span class="lock-icon"></span>
+                                        </div>
+                                    </div>
+                                    <div class="url">https://qualitycontrol.herokuapp.com/api/v1/devices</div>
+
+                                    <div class="request-body">
+                                        <div class="body-heading">HEADERS</div>
+                                        <hr>
+                                        <div class="param row">
+                                            <div class="name col-md-3 col-xs-12">Authorization</div>
+                                            <div class="value col-md-9 col-xs-12">Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY1Mzg2NDM5OCwianRpIjoiZDc3ZGNiNjctZWJmMi00NjMyLTllZWItYTQ1MzY5NGNhZWY2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJ1c2VyX3JvbGUiOjEsImlkX3VzZXIiOjMsImxvZ2luIjoidXNlciJ9LCJuYmYiOjE2NTM4NjQzOTgsImV4cCI6MTY1Mzg2NDc1OH0.HCbtQB4LJIriPkaWpYxgRKJ68F2EwPLrJT21A5ytR3sHUAbejZ5BvJ4lUtvbeeUCA7GdLJrgUAIWnOifSxfLhw</div>
+                                            <div class="description col-md-9 col-xs-12">
+                                                <p>None</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="request-body">
+                                        <div class="body-heading">BODY <span class="body-type">raw</span></div>
+                                        <hr>
+                                        <div class="raw-body code-snippet">
+                                            <pre class="body-block click-to-expand-wrapper is-snippet-wrapper " data-title="Create Device">
+                                                  <code>
+                                                    
+{
+    "brand": "BRAND TEST 3",
+    "device_name": "DEVICE TEST 3",
+    "model": "MODEL0012",
+    "serie_number": "SN0701"
+}
+                                                  </code>
+                                              </pre>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">Create Device</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="3" data-response-info="response_3">Create Device</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="3" data-id="response_3">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper is-expandable" data-title="Create Device">
+                                                <code class="is-highlighted">
+POST https://qualitycontrol.herokuapp.com/api/v1/devices
+
+{
+    "brand": "BRAND TEST 3",
+    "device_name": "DEVICE TEST 3",
+    "model": "MODEL0012",
+    "serie_number": "SN0701"
+}</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="4">
+                                    <div class="heading">
+                                        <div class="name">
+                                            <span class="PUT method">PUT</span> Edit Device <span class="lock-icon"></span>
+                                        </div>
+                                    </div>
+                                    <div class="url">https://qualitycontrol.herokuapp.com/api/v1/devices/3</div>
+
+                                    <div class="request-body">
+                                        <div class="body-heading">HEADERS</div>
+                                        <hr>
+                                        <div class="param row">
+                                            <div class="name col-md-3 col-xs-12">Authorization</div>
+                                            <div class="value col-md-9 col-xs-12">Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY1Mzg2NDgyNCwianRpIjoiMWJjOGQ4ZjgtMDhhYi00ZjFiLWE2ZGYtMjM3OTUxZWRhMmI5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJ1c2VyX3JvbGUiOjEsImlkX3VzZXIiOjMsImxvZ2luIjoidXNlciJ9LCJuYmYiOjE2NTM4NjQ4MjQsImV4cCI6MTY1Mzg2NTE4NH0.U0xjXBX5iB6s8HE-YyGl-dmnB3p7XyAj_2nMQ2Tx1_T1xh6eUX3BGsnBHSX75xnSzcd_kXKjzVnv64a4rJeyGA</div>
+                                            <div class="description col-md-9 col-xs-12">
+                                                <p>None</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="request-body">
+                                        <div class="body-heading">BODY <span class="body-type">raw</span></div>
+                                        <hr>
+                                        <div class="raw-body code-snippet">
+                                            <pre class="body-block click-to-expand-wrapper is-snippet-wrapper is-expandable" data-title="Edit Device">
+                                                  <code>
+                                                    
+{
+    "brand": "BRAND TEST 3 EDITED",
+    "device_name": "DEVICE TEST 3 EDITED",
+    "model": "MODEL0012",
+    "serie_number": "SN0701"
+}
+                                                  </code>
+                                              </pre>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">Edit Device</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="4" data-response-info="response_4">Edit Device</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="4" data-id="response_4">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper is-expandable" data-title="Edit Device">
+                                                <code class="is-highlighted">
+PUT https://qualitycontrol.herokuapp.com/api/v1/devices/3
+
+{
+    "brand": "BRAND TEST 3 EDITED",
+    "device_name": "DEVICE TEST 3 EDITED",
+    "model": "MODEL0012",
+    "serie_number": "SN0701"
+}</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row row-no-padding row-eq-height">
+                            <div class="col-md-6 col-xs-12 section">
+                                <div class="api-information" id="5">
+                                    <div class="heading">
+                                        <div class="name">
+                                            <span class="DELETE method">DELETE</span> Delete Device <span class="lock-icon"></span>
+                                        </div>
+                                    </div>
+                                    <div class="url">https://qualitycontrol.herokuapp.com/api/v1/devices/2</div>
+
+                                    <div class="request-body">
+                                        <div class="body-heading">HEADERS</div>
+                                        <hr>
+                                        <div class="param row">
+                                            <div class="name col-md-3 col-xs-12">Authorization</div>
+                                            <div class="value col-md-9 col-xs-12">Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY1Mzg2MTk3OCwianRpIjoiMmI0N2U5MzktM2FhOC00YzE5LWEzMzQtZGViMzhmNDI2Y2I4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJ1c2VyX3JvbGUiOjEsImlkX3VzZXIiOjMsImxvZ2luIjoidXNlciJ9LCJuYmYiOjE2NTM4NjE5NzgsImV4cCI6MTY1Mzg2MjMzOH0.dQIPGqaiUtty9ux7fwglYqb0mfHtmCiVktP1-r5fpPRR2MafTxBauAXew6Urbde9mqKNnA8_CJP1JOqwpsAEig</div>
+                                            <div class="description col-md-9 col-xs-12">
+                                                <p>None</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="request-body">
+                                        <div class="body-heading">BODY <span class="body-type">raw</span></div>
+                                        <hr>
+                                        <div class="raw-body code-snippet">
+                                            <pre class="body-block click-to-expand-wrapper is-snippet-wrapper " data-title="Delete Device">
+                                                  <code>
+                                                    
+
+                                                  </code>
+                                              </pre>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12 examples">
+                                <div class="sample-request">
+                                    <div class="heading">
+                                        <span>Example Request</span>
+                                    </div>
+                                    <div class="responses-index">
+                                        <div class="dropdown response-name">
+                                            <button class="btn   responses-dropdown truncate" type="button" id="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                              <span id="selected" class="response-name-label">Delete Device</span>
+                                                <span class="caret"></span>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="f678f251-1750-4e3a-b5d8-05b4c6b0fb37_dropdown">
+                                                <li class="truncate" data-request-info="5" data-response-info="response_5">Delete Device</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formatted-requests " data-request-id="5" data-id="response_5">
+                                    <div class="request code-snippet">
+                                        <div>
+                                            <pre class="click-to-expand-wrapper is-snippet-wrapper " data-title="Delete Device">
+                                                <code class="is-highlighted">
+DELETE https://qualitycontrol.herokuapp.com/api/v1/devices/2
+
+</code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </main>
+        <!-- page-content" -->
+    </div>
+    <!-- page-wrapper -->
+    <!-- using online scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+    </script>
+    <script src="https://malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/bootstrap-treeview.min.js"></script>
+    <script src="js/main.min.js"></script>
+    <script type="application/javascript">
+        var data = [{
+            'text': 'Get Devices',
+            'href': '#1',
+            'method': 'GET'
+        }, {
+            'text': 'Get Devices By Id',
+            'href': '#2',
+            'method': 'GET'
+        }, {
+            'text': 'Create Device',
+            'href': '#3',
+            'method': 'POST'
+        }, {
+            'text': 'Edit Device',
+            'href': '#4',
+            'method': 'PUT'
+        }, {
+            'text': 'Delete Device',
+            'href': '#5',
+            'method': 'DELETE'
+        }, {
+            'text': 'Voltar',
+            'href': '../../index.html'
+        }]
+        $('#tree').treeview({
+            data: data,
+            levels: 10,
+            expandIcon: 'fas fa-caret-right',
+            collapseIcon: 'fas fa-caret-down',
+            enableLinks: true,
+            showIcon: true,
+            showMethod: true
+        });
+    </script>
+
+</body>
+
+</html>
