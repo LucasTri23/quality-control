@@ -1,10 +1,7 @@
 from flask import Flask
-from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
-
-
 
 app = Flask(__name__)
 app.config.from_object('config.ProductionConfig')
@@ -20,12 +17,12 @@ def create_app():
     ma.init_app(app)
     jwt.init_app(app)
 
-    #import models
+    # import models
     from app.models import device
     from app.models import user
     from app.models import employee
 
-    #implement logic to see if the bank already exists
+    # implement logic to see if the bank already exists
     with app.app_context():
         db.create_all()
     # #import controllers
