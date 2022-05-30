@@ -6,14 +6,16 @@ from app import db
 from app.models.result import Result
 from app.models.result_schema import ResultSchema
 
-
 class ResultController:
     result_controller = Blueprint(name='result_controller', import_name=__name__)
 
     @result_controller.route('/results', methods=['GET'])
     @jwt_required()
     def index():
-        result_list = Result.query.all()
+        id_device = request.args.get('dvc', None)
+        id_employee = request.args.get('emp', None)
+        date_hour = request.args.get('dt', None)
+        result_list = Result.get_results(id_device, id_employee, date_hour)
         result_schema = ResultSchema(many=True)
         results = result_schema.dump(result_list)
         return (jsonify({

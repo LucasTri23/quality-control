@@ -19,6 +19,7 @@ class ResultSchema(ma.SQLAlchemyAutoSchema):
     id_test = fields.Integer()
     id_employee = fields.Integer()
     id_device = fields.Integer()
+    date_hour = fields.DateTime()
     employee = fields.Nested(EmployeeSchema)
     device = fields.Nested(DeviceSchema)
     tests = fields.Nested(TestSchema, many=True)

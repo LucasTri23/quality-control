@@ -32,6 +32,34 @@ class Result(db.Model):
         self.id_device = id_device
         self.tests = tests
 
+    @staticmethod
+    def get_results(id_device, id_employee, date_hour):
+        if id_device:
+            if date_hour and id_employee:
+                result_list = (Result.query.filter(id_device==id_device)).filter(Result.id_employee==id_employee).filter(
+                    date_hour.like(date_hour))
+            elif date_hour:
+                result_list = (Result.query.filter(Result.id_device==id_device)).filter(
+                    date_hour.like(date_hour))
+            elif id_employee:
+                result_list = (Result.query.filter(Result.id_device == id_device)).filter(
+                    Result.id_employee == id_employee)
+            else:
+                result_list = Result.query.filter(Result.id_device==id_device)
+
+        elif id_employee:
+            if date_hour:
+                result_list = (Result.query.filter(Result.id_employee == id_employee)).filter(
+                    date_hour.like(date_hour))
+            else:
+                result_list = Result.query.filter(Result.id_employee == id_employee)
+        elif date_hour:
+            result_list = Result.query.filter(Result.date_hour.like(date_hour)).all()
+        else:
+            result_list = Result.query.all()
+
+        return result_list
+
     def create(self):
         db.session.add(self)
         db.session.commit()
