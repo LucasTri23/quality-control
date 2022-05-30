@@ -26,7 +26,8 @@ class ProductionConfig(BaseConfig):
     TESTING = False
     SQLALCHEMY_DATABASE_URI = f'mysql+pymysql://{config.remote_user}:{config.remote_password}@{config.remote_host}/{config.remote_db}'
     JWT_ALGORITHM = "HS512"
-    JWT_ACCESS_TOKEN_EXPIRES = timedelta(seconds=360)
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(seconds=600)
+    JWT_REFRESH_TOKEN_EXPIRES = timedelta(seconds=604800)
     JWT_BLACKLIST_ENABLED = True
     JWT_BLACKLIST_TOKEN_CHECKS = ['access', 'refresh']
     JWT_TOKEN_LOCATION = ['headers']

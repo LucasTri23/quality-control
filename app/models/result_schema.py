@@ -14,7 +14,6 @@ class ResultSchema(ma.SQLAlchemyAutoSchema):
         load_instance = True
 
     id_result = fields.Integer()
-    date_hour = fields.DateTime()
     measured_value = fields.Decimal()
     result_desc = fields.Str()
     id_test = fields.Integer()
