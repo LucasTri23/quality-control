@@ -5,11 +5,13 @@ from sqlalchemy.sql.functions import current_timestamp
 from app.models.test_result import TestResult
 
 from app import db
+
 Base = db.make_declarative_base(TestResult)
 test_result = Table('Test_result', Base.metadata,
-    Column("id_test", BigInteger, ForeignKey("Test.id_test")),
-    Column("id_result", BigInteger, ForeignKey("Result.id_result"))
-                        )
+                    Column("id_test", BigInteger, ForeignKey("Test.id_test")),
+                    Column("id_result", BigInteger, ForeignKey("Result.id_result"))
+                    )
+
 
 class Result(db.Model):
     __tablename__ = 'Result'
@@ -23,7 +25,6 @@ class Result(db.Model):
     device = relationship("Device", uselist=False, backref="Result", lazy=True)
     tests = relationship('Test', secondary="Test_result", backref="Tests", lazy="joined")
 
-
     # align with the teacher the business rules
     def __init__(self, measured_value, result_desc, id_employee, id_device, tests) -> None:
         self.measured_value = measured_value
@@ -36,21 +37,22 @@ class Result(db.Model):
     def get_results(id_device, id_employee, date_hour):
         if id_device:
             if date_hour and id_employee:
-                result_list = (Result.query.filter(id_device==id_device)).filter(Result.id_employee==id_employee).filter(
-                    date_hour.like(date_hour))
+                result_list = (Result.query.filter(Result.id_device == id_device)). \
+                    filter(Result.id_employee == id_employee). \
+                    filter(Result.date_hour.like(date_hour))
             elif date_hour:
-                result_list = (Result.query.filter(Result.id_device==id_device)).filter(
-                    date_hour.like(date_hour))
+                result_list = (Result.query.filter(Result.id_device == id_device)) \
+                    .filter(Result.date_hour.like(date_hour))
             elif id_employee:
                 result_list = (Result.query.filter(Result.id_device == id_device)).filter(
                     Result.id_employee == id_employee)
             else:
-                result_list = Result.query.filter(Result.id_device==id_device)
+                result_list = Result.query.filter(Result.id_device == id_device)
 
         elif id_employee:
             if date_hour:
                 result_list = (Result.query.filter(Result.id_employee == id_employee)).filter(
-                    date_hour.like(date_hour))
+                    Result.date_hour.like(date_hour))
             else:
                 result_list = Result.query.filter(Result.id_employee == id_employee)
         elif date_hour:
