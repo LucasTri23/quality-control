@@ -12,9 +12,9 @@ class ResultController:
     @result_controller.route('/results', methods=['GET'])
     @jwt_required()
     def index():
-        id_device = request.args.get('dvc', None)
-        id_employee = request.args.get('emp', None)
-        date_hour = request.args.get('dt', None)
+        id_device = request.args.get('id_device', None)
+        id_employee = request.args.get('id_emp', None)
+        date_hour = request.args.get('date', None)
         result_list = Result.get_results(id_device, id_employee, date_hour)
         result_schema = ResultSchema(many=True)
         results = result_schema.dump(result_list)

@@ -11,8 +11,8 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
         load_instance = True
 
     id_user = fields.Integer()
-    login = fields.Str()
-    password = fields.Str(load_only=True)
-    user_role = fields.Integer()
+    login = fields.Str(required=True)
+    password = fields.Str(load_only=True,required=True)
+    user_role = fields.Integer(required=True)
     id_employee = fields.Str()
-    employee = fields.Nested(EmployeeSchema)
+    employee = fields.Nested(EmployeeSchema, required=True)
